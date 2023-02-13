@@ -1,0 +1,22 @@
+site_name: XV6-x86
+site_url: https://wangzhengquan.github.io/XV6-x86
+theme: material
+plugins:
+  - search
+  - minify:
+      minify_html: true
+      htmlmin_opts:
+        remove_comments: true
+nav: 
+  - Boot loader: 'boot_loader.md'
+  - Entry kernel: 'entry_ kernel.md'
+  - Scheduler: 'scheduler.md'
+  - 第一个进程: 'the_first_process.md'
+  - 中断:
+    - 中断处理流程: 'interrups_process.md'
+    - 系统调用: 'system_call.md'
+    - 时间中断: 'timer_interrupt.md'
+    - 硬盘中断: 'disk_interrupt.md'
+  - 文件系统: 'file_system.md'
+  - 设备管理: 'device.md'
+   
