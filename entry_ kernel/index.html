@@ -1,0 +1,84 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link href=https://wangzhengquan.github.io/XV6-x86/entry_%20kernel/ rel=canonical><link rel=icon href=../assets/images/favicon.png><meta name=generator content="mkdocs-1.3.1, mkdocs-material-8.3.9"><title>Entry kernel - XV6-x86</title><link rel=stylesheet href=../assets/stylesheets/main.1d29e8d0.min.css><link rel=stylesheet href=../assets/stylesheets/palette.cbb835fc.min.css><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback"><style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style><script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script></head> <body dir=ltr data-md-color-scheme data-md-color-primary=none data-md-color-accent=none> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#_1 class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=.. title=XV6-x86 class="md-header__button md-logo" aria-label=XV6-x86 data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> XV6-x86 </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Entry kernel </span> </div> </div> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg> </label> <nav class=md-search__options aria-label=Search> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg> </button> </nav> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=.. title=XV6-x86 class="md-nav__button md-logo" aria-label=XV6-x86 data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg> </a> XV6-x86 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../boot_loader/ class=md-nav__link> Boot loader </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Entry kernel <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> Entry kernel </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#4mb class=md-nav__link> 开启 4MB 内存分页支持 </a> </li> <li class=md-nav__item> <a href=#_2 class=md-nav__link> 设置内核栈顶位置 </a> </li> <li class=md-nav__item> <a href=#_3 class=md-nav__link> 内核初始化 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../scheduler/ class=md-nav__link> Scheduler </a> </li> <li class=md-nav__item> <a href=../the_first_process/ class=md-nav__link> 第一个进程 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> 中断 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=中断 data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> 中断 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../interrups_process/ class=md-nav__link> 中断处理流程 </a> </li> <li class=md-nav__item> <a href=../system_call/ class=md-nav__link> 系统调用 </a> </li> <li class=md-nav__item> <a href=../timer_interrupt/ class=md-nav__link> 时间中断 </a> </li> <li class=md-nav__item> <a href=../disk_interrupt/ class=md-nav__link> 硬盘中断 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../file_system/ class=md-nav__link> 文件系统 </a> </li> <li class=md-nav__item> <a href=../device/ class=md-nav__link> 设备管理 </a> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#4mb class=md-nav__link> 开启 4MB 内存分页支持 </a> </li> <li class=md-nav__item> <a href=#_2 class=md-nav__link> 设置内核栈顶位置 </a> </li> <li class=md-nav__item> <a href=#_3 class=md-nav__link> 内核初始化 </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1 id=_1>运行内核</h1> <p>在boot loader 加载完内核后，通过elf header的e_entry进入内核的入口</p> <pre><code>((void (*)(void)) (ELFHDR-&gt;e_entry))();
+</code></pre> <p>这个入口在'entry.S'文件中，这个文件完成的功能是开启分页模式，并告诉CPU页表的地址。值得注意的是因为我们的运行的代码是面向虚拟地址的，但是在开启分页模式之前，这些虚拟地址都还是无效的，所以要把虚拟地址转换为物理地址，这里的物理实际是线性地址，也就是前面在 boot loader 中讲到的32位寻址的段保护模式，这里的线性地址等于物理地址。V2P_WO 就是实现虚拟地址向物理地址转换的一个宏。看一下V2P_WO 的实现代码</p> <pre><code class=language-C>#define V2P_WO(x) ((x) - KERNBASE) 
+</code></pre> <p>即，物理地址=虚拟地址-KERNBASE。为什么会是这样哪，实际上在boot loader的讲解中，我们已经通过命令‘readelf -l kernel’分析过kernel elf文件的Program Headers</p> <pre><code>$ readelf -l kernel
+Elf file type is EXEC (Executable file)
+Entry point 0x10000c
+There are 3 program headers, starting at offset 52
+
+Program Headers:
+  Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
+  LOAD           0x001000 0x80100000 0x00100000 0x07aab 0x07aab R E 0x1000
+  LOAD           0x009000 0x80108000 0x00108000 0x02516 0x0d4a8 RW  0x1000
+  GNU_STACK      0x000000 0x00000000 0x00000000 0x00000 0x00000 RWE 0x10
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     .text .rodata 
+   01     .data .bss 
+   02     
+</code></pre> <p>在这里可以发现两个可以load的段的虚拟地址和物理地址差了0x80000000，正是KERNBASE的值。实际上虚拟地址和物理地址的位置都是在kernel.ld文件中设置的</p> <pre><code>SECTIONS
+{
+    /* Link the kernel at this address: &quot;.&quot; means the current address */
+        /* Must be equal to KERNLINK */
+    . = 0x80100000;
+
+    .text : AT(0x100000) {
+        *(.text .stub .text.* .gnu.linkonce.t.*)
+    }
+
+    ......
+}
+</code></pre> <h2 id=4mb>开启 4MB 内存分页支持</h2> <p>这是通过设置寄存器 cr4 的 PSE 位来完成的。cr4 寄存器是个 32 位的寄存器目前只用到低 21 位，每一位的至位都控制着一些功能的状态，所以 cr4 寄存器又叫做控制寄存器。</p> <p>PSE 位是 cr4 控制寄存器的第 5 位，当该位置为 1 时表示内存页大小为 4MB，当置为 0 时表示内存页大小为 4KB。</p> <pre><code># Turn on page size extension for 4Mbyte pages
+movl    %cr4, %eax
+orl     $(CR4_PSE), %eax
+movl    %eax, %cr4
+</code></pre> <p>cr3 寄存器中保存着页表所在的内存物理地址</p> <pre><code>  # Set page directory
+  movl    $(V2P_WO(entrypgdir)), %eax
+  movl    %eax, %cr3
+
+</code></pre> <p>cr0控制分页模式的开启，（在boot loader中讲过）。</p> <pre><code> # Turn on paging.
+  movl    %cr0, %eax
+  orl     $(CR0_PG|CR0_WP), %eax
+  movl    %eax, %cr0
+</code></pre> <p>页表entrypgdir的代码如下：</p> <pre><code>// The boot page table used in entry.S and entryother.S.
+// Page directories (and page tables) must start on page boundaries,
+// hence the __aligned__ attribute.
+// PTE_PS in a page directory entry enables 4Mbyte pages.
+
+__attribute__((__aligned__(PGSIZE)))
+pde_t entrypgdir[NPDENTRIES] = {
+  // Map VA's [0, 4MB) to PA's [0, 4MB)
+  [0] = (0) | PTE_P | PTE_W | PTE_PS,
+  // Map VA's [KERNBASE, KERNBASE+4MB) to PA's [0, 4MB)
+  [KERNBASE&gt;&gt;PDXSHIFT] = (0) | PTE_P | PTE_W | PTE_PS,
+};
+
+</code></pre> <p>每条页表的记录是32位大小，这是个只有一级的页面，所以它的前20位是页表索引，后12位代表的意义如下：</p> <pre><code>+ 11 + 10 + 9 + 8 +  7 + 6 + 5 +  4  +  3  + 2  + 1  + 0 +
+|    Avail    | G | PS | D | A | PCD | PWT | US | RW | P |
++--------------------------------------------------------+
+|     000     | 0 |  1 | 0 | 0 |  0  |  0  |  0 |  1 | 1 |
++--------------------------------------------------------+
+
+P     : 0 表示此页不在物理内存中，1 表示此页在物理内存中
+RW    : 0 表示只读，1 表示可读可写（要配合 US 位）
+US    : 0 表示特权级页面，1 表示普通权限页面
+PWT   : 1 表示写这个页面时直接写入内存，0 表示先写到缓存中
+PCD   : 1 表示该页禁用缓存机制，0 表示启用缓存
+A     : 当该页被初始化时为 0，一但进行过读/写则置为 1
+D     : 脏页标记（这里就不做具体介绍了）
+PS    : 0 表示页面大小为 4KB，1 表示页面大小为 4MB
+G     : 1 表示页面为共享页面（这里就不做具体介绍了）
+Avail : 3 位保留位
+</code></pre> <p>通过上面的页表可以看出，在KERNBASE到KERNBASE+4M之间的虚拟地址对应的页表记录的基地址是0,那么这一段的“物理地址=虚拟地址-KERNBASE”与前面V2P_WO的计算相同。而在0到4M之间的虚拟地址对应的页表记录的基地址也是0，所以这一段的虚拟地址与物理地址相同。 这样保证了在分页机制开启的情况下内核也可以正常运行，但也限制了内核最多只能使用 4MB 的内存，不过对于现在的内核来说 4MB 足够了。</p> <h2 id=_2>设置内核栈顶位置</h2> <pre><code># Set up the stack pointer.
+  movl $(stack + KSTACKSIZE), %esp
+
+  ....
+
+.comm stack, KSTACKSIZE
+</code></pre> <p>这里通过 .comm 在内核 bbs 段开辟了一段 KSTACKSIZE = 4096 = 4KB</p> <p>此时内核的内存布局如下：</p> <p><img alt src=../img/kernel-layout.png></p> <h2 id=_3>内核初始化</h2> <p>到这里我们已经可以正常访问虚拟内存而不需要手工转换了，最后就是进入main函数，进行一系列的内核初始化的工作。</p> <pre><code># Jump to main(), and switch to executing at
+  # high addresses. The indirect call is needed because
+  # the assembler produces a PC-relative instruction
+  # for a direct jump.
+  mov $main, %eax
+  jmp *%eax
+</code></pre> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../boot_loader/ class="md-footer__link md-footer__link--prev" aria-label="Previous: Boot loader" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Previous </span> Boot loader </div> </div> </a> <a href=../scheduler/ class="md-footer__link md-footer__link--next" aria-label="Next: Scheduler" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Next </span> Scheduler </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-copyright> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script> <script src=../assets/javascripts/bundle.6c7ad80a.min.js></script> </body> </html>
