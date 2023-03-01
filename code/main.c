@@ -17,6 +17,7 @@ extern char end[]; // first address after kernel loaded from ELF file
 int
 main(void)
 {
+  // 在临时页表的0-4M空间里建立内存块分配链表
   kinit1(end, P2V(4*1024*1024)); // phys page allocator
   kvmalloc();      // kernel page table
   mpinit();        // detect other processors
@@ -32,6 +33,7 @@ main(void)
   fileinit();      // file table
   ideinit();       // disk 
   startothers();   // start other processors
+  // 完整内核页表建立后，可以在全部的0-PHYSTOP（PHYSTOP < 2G）的空间里寻址，这里可以建立在剩下的4M-PHYSTOP的空间里内存块分配链表
   kinit2(P2V(4*1024*1024), P2V(PHYSTOP)); // must come after startothers()
   userinit();      // first user process
   mpmain();        // finish this processor's setup
